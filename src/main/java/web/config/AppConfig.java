@@ -58,10 +58,10 @@ public class AppConfig {
 
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", env.getRequiredProperty("db.hbm2ddl.auto"));
-        properties.setProperty("hibernate.dialect", env.getRequiredProperty("db.dialect"));
-        properties.setProperty("hibernate.show_sql", env.getRequiredProperty("db.show_sql"));
-        properties.setProperty("hibernate.format_sql", env.getRequiredProperty("db.format_sql"));
+        properties.setProperty("hibernate.hbm2ddl.auto", env.getRequiredProperty("hibernate.hbm2ddl.auto"));
+        properties.setProperty("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
+        properties.setProperty("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
+        properties.setProperty("hibernate.format_sql", env.getRequiredProperty("hibernate.format_sql"));
 
         return properties;
     }
