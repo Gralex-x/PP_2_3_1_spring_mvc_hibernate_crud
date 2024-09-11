@@ -47,10 +47,13 @@ public class User {
     }
 
     public int getAge() {
-        return age;
+        return age != null ? age : 0;
     }
 
     public void setAge(int age) {
+        if (age < 1) {
+            throw new IllegalArgumentException("Age must be greater than 0");
+        }
         this.age = age;
     }
 }

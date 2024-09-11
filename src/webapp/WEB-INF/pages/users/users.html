@@ -15,8 +15,7 @@
 </form>
 <hr>
 <div th:each="user : ${users}">
-    <a th:href="@{/users/show(id=${user.getId()})}"
-       th:text="${user.getName() + ' ' + user.getAge()}">user</a>
+    <a th:text="${user.getName() + ', age: ' + user.getAge()}">user</a>
 
     <a th:href="@{/users/edit(id=${user.getId()})}">
         <button type="button">

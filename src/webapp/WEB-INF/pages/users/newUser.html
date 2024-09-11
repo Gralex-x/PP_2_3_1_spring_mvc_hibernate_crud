@@ -19,12 +19,12 @@
             <br/>
 
             <label for="age">Enter age: </label>
-            <input type="text" min="0" required th:field="*{age}" id="age">
-
-            <br>
-
-            <input type="submit" value="Create!">
+            <input id="age" min="1" th:field="*{age}" type="number" required/>
         </div>
+        <br>
+
+        <input type="submit" value="Create!">
+
     </form>
 </div>
 </body>
