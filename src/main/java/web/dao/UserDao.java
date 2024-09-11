@@ -8,6 +8,8 @@ public interface UserDao {
 
     List<User> getUsers();
 
+    List<User> getLimitedUsers(int count);
+
     User getUserById(int id);
 
     void addUser(User user);

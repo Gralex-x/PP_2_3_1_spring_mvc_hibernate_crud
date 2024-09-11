@@ -3,10 +3,13 @@ package web.dao;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
+
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Repository
@@ -16,12 +19,20 @@ public class UserDaoImpl implements UserDao {
     private EntityManager em;
 
     @Override
+    @Transactional(readOnly = true)
     public List<User> getUsers() {
         TypedQuery<User> query = em.createQuery("FROM User", User.class);
         return query.getResultList();
     }
 
     @Override
+    public List<User> getLimitedUsers(int count) {
+        TypedQuery<User> query = em.createQuery("FROM User", User.class).setMaxResults(count);
+        return query. getResultList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public User getUserById(int id) {
         return em.find(User.class, id);
     }
@@ -40,8 +51,8 @@ public class UserDaoImpl implements UserDao {
         user1.setAge(user.getAge());
     }
 
-    @Transactional
     @Override
+    @Transactional
     public void deleteUser(int id) {
         em.remove(em.find(User.class, id));
     }
