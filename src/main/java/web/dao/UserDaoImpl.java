@@ -26,9 +26,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<User> getLimitedUsers(int count) {
         TypedQuery<User> query = em.createQuery("FROM User", User.class).setMaxResults(count);
-        return query. getResultList();
+        return query.getResultList();
     }
 
     @Override
