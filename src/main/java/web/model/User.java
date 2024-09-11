@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -30,6 +31,13 @@ public class User {
         this.name = name;
     }
 
+    @PrePersist
+    public void prePersist() {
+        if (this.age == null) {
+            this.age = 0;
+        }
+    }
+
     public String getName() {
         return name;
     }
@@ -51,8 +59,8 @@ public class User {
     }
 
     public void setAge(int age) {
-        if (age < 1) {
-            throw new IllegalArgumentException("Age must be greater than 0");
+        if (age < 0) {
+            throw new IllegalArgumentException("Age must be non-negative");
         }
         this.age = age;
     }
